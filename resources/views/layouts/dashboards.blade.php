@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/">
+        <h1>TURN TO HOME</h1>
+    </a>
     @yield('content')
 </body>
 </html>
