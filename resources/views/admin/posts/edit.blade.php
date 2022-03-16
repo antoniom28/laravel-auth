@@ -35,6 +35,9 @@
 
     <button type="submit" class="btn btn-primary">CREA</button>
     </form>
+    <a href="/admin/posts">
+        <h3 class="mt-2">Back to post</h3>
+    </a>
     
     @if ($errors->any())
         <div class="alert alert-danger mt-4">

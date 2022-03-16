@@ -9,9 +9,6 @@
 </head>
 <body>
     <div class="container">
-        <a href="/">
-            <h1>TURN TO HOME</h1>
-        </a>
         @yield('content')
     </div>
 
