@@ -1,51 +1,16 @@
 @extends('layouts.dashboards')
 
 @section('content')
-    <?php
-        if(isset($_GET['bozze']))
-            $menu = false;
-        else
-            $menu = true;
-    ?>
-
-    <div class="text-center d-flex flex-column">
-        @if ($menu)
-            <h1>
-                <a class="d-inline-block" href="/">TURN TO HOME</a>
-            </h1>
-            <h1>
-                <a class="d-inline-block" href="{{route("admin.posts.index" , ["bozze" => true])}}">
-                    VAI ALLE BOZZE
-                </a>
-            </h1>
-            <div class="create">
-                <h2><a href="{{route("admin.posts.create")}}">Nuovo Post</a></h2>
-            </div>
-        @else
-            <h1>
-                <a class="d-inline-block" href="{{route("admin.posts.index")}}">TURN TO PUBLISHED POSTS</a>
-            </h1>
-        @endif
-    </div>
+    <a href="/">
+        <h1>TURN TO HOME</h1>
+    </a>
     @foreach ($posts as $post)
-
-    <?php
-    if(isset($_GET['bozze']))
-        $published = !$post->published;
-    else
-        $published = $post->published;
-    ?>
-
-        @if($published)
+        @if($post->published)
             <div class="my-4 card">
                 <h1> {{$post->title}} </h1>
             <p> {{$post->content}} </p>
             <p> <strong>Slug</strong>: {{$post->slug}} </p>
             <span> Creato il : {{$post->created_at}} </span>
-            
-            @if(!$post->published)
-                <h1>questo non è pubblico</h1>
-            @endif
             <br><br>
 
             <div>
