@@ -94,6 +94,8 @@
                         <h1>SEE ALL POST</h1>
                     </a>
                 </div>
+                @else
+                <h1>EFFETTUA IL LOGIN</h1>
                 @endauth
             @endif
             </div>
