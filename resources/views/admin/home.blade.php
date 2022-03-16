@@ -13,8 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ Auth::user()->name }}
-                    {{ __('You are logged in!') }}
+                    <div class="d-flex justify-content-center m-5 avatar">
+                        @if(Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="">
+                        @else
+                            <h1 class="text-center">Carica un'avatar ! (è solo testo..)</h1>
+                        @endif
+                    </div>
+                    <div class="text-center">
+                        <u>{{ Auth::user()->name }}</u>
+                        {{ __('You are logged in!') }}
+                    </div>
                 </div>
             </div>
         </div>
