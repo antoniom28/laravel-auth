@@ -12,9 +12,9 @@
             <h3 class="mt-2">Back to post</h3>
         </a>
     @else
-        <h1>POST NON TROVATO</h1>
-        <a href="/admin/posts">
-            <h3 class="mt-2">Back to post</h3>
+        <h1>POST NON PUBBLICATO</h1>
+        <a href="{{route("admin.posts.index" , ["bozze" => true])}}">
+            <h3 class="mt-2">Back to bozze</h3>
         </a>
     @endif
 @endsection
