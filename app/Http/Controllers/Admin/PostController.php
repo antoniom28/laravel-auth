@@ -14,6 +14,17 @@ class PostController extends Controller
         "content" => "required",
         "published" => "required",
     ];
+
+    protected function create_slug($value , $id){
+        $slug = Str::slug($value);
+        $count = 1;
+        while(Post::where('slug' , $slug)->where('id' , '!=' , $id)->first()){
+            $slug = Str::slug($value)."-".$count;
+            $count++;
+        }
+        //Str::of($data["title"])->slug("-")
+        return $slug;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +63,9 @@ class PostController extends Controller
         $new_post->content = $data["content"];
         if($data["published"] == 'yes')
             $new_post->published = true;
-        $new_post->slug = Str::of($data["title"])->slug("-");
+
+        $new_post->slug = $this->create_slug($data["title"], null);
+        
         $new_post->save();
 
         return redirect()->route('admin.posts.index');
@@ -91,18 +104,21 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         
-      //  $this->validate["content"] = "required|content,$post->id;
         $request->validate($this->validation);
 
         $data = $request->all();
+        
+        if($post->title != $data["title"])
+            $post->slug = $this->create_slug($data["title"], $post->id);
 
-        $new_post = new Post();
-        $new_post->title = $data["title"];
-        $new_post->content = $data["content"];
+        $post->title = $data["title"];
+        $post->content = $data["content"];
         if($data["published"] == 'yes')
-            $new_post->published = true;
-        $new_post->slug = Str::of($data["title"])->slug("-");
-        $new_post->save();
+            $post->published = true;
+        else
+            $post->published = false;
+
+        $post->save();
 
         return redirect()->route('admin.posts.show' , $post->id);
     }
