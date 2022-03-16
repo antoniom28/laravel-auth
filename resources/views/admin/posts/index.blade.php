@@ -18,6 +18,7 @@
                     VAI ALLE BOZZE
                 </a>
             </h1>
+    </div>
             <div class="create">
                 <h2><a href="{{route("admin.posts.create")}}">Nuovo Post</a></h2>
             </div>
@@ -26,7 +27,6 @@
                 <a class="d-inline-block" href="{{route("admin.posts.index")}}">TURN TO PUBLISHED POSTS</a>
             </h1>
         @endif
-    </div>
     @foreach ($posts as $post)
 
     <?php
