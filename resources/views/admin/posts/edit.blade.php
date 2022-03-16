@@ -29,14 +29,19 @@
 
     <div class="form-group">
         <label for="published">Pubblicare alla creazione ? </label>
-        SI <input {{(old("published") == "yes") ? "checked" : ""}} value="yes" type="radio" name="published" id="published">
-        NO <input {{(old("published") == "no") ? "checked" : ""}} value="no" type="radio" name="published" id="published">
+        SI <input {{(old("published")== "yes"||$post->content == "yes") ? "checked" : ""}} value="yes" type="radio" name="published" id="published">
+        NO <input {{(old("published")== "no"||$post->content == "no") ? "checked" : ""}} value="no" type="radio" name="published" id="published">
+        @error('published')
+        <div class="alert alert-danger">
+            {{$message}}
+        </div>
+        @enderror
     </div>
 
-    <button type="submit" class="btn btn-primary">CREA</button>
+    <button type="submit" class="btn btn-primary">Modifica</button>
     </form>
     <a href="/admin/posts">
-        <h3 class="mt-2">Back to post</h3>
+        <h3 class="mt-2">Torna ai post</h3>
     </a>
     
     @if ($errors->any())

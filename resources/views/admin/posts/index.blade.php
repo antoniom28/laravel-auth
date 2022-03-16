@@ -11,11 +11,11 @@
     <div class="text-center d-flex flex-column">
         @if ($menu)
             <h1>
-                <a class="d-inline-block" href="/">TURN TO HOME</a>
+                <a class="d-inline-block" href="/">Torna in home</a>
             </h1>
             <h1>
                 <a class="d-inline-block" href="{{route("admin.posts.index" , ["bozze" => true])}}">
-                    VAI ALLE BOZZE
+                    Vai alle bozze
                 </a>
             </h1>
     </div>
@@ -24,7 +24,7 @@
             </div>
         @else
             <h1>
-                <a class="d-inline-block" href="{{route("admin.posts.index")}}">TURN TO PUBLISHED POSTS</a>
+                <a class="d-inline-block" href="{{route("admin.posts.index")}}">Torna ai post pubblicati</a>
             </h1>
         @endif
     @foreach ($posts as $post)

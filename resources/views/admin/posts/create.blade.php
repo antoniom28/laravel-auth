@@ -30,6 +30,11 @@
         <label for="published">Pubblicare alla creazione ? </label>
         SI <input {{(old("published") == "yes") ? "checked" : ""}} value="yes" type="radio" name="published" id="published">
         NO <input {{(old("published") == "no") ? "checked" : ""}} value="no" type="radio" name="published" id="published">
+        @error('published')
+        <div class="alert alert-danger">
+            {{$message}}
+        </div>
+        @enderror
     </div>
 
     <button type="submit" class="btn btn-primary">CREA</button>
