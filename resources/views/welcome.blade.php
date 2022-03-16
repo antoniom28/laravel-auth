@@ -69,7 +69,7 @@
                 <div class="top-right links">
                     @auth
                     <a href="{{ url('admin') }}">MY ACCOUNT</a>
-                    <a href="{{ url('admin/post') }}">POST</a>
+                    <a href="{{ url('admin/posts') }}">POST</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

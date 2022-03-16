@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Post;
 
 class PostController extends Controller
 {
+    protected $validation = [
+        "title" => "string|min:10",
+        "content" => "required",
+        "published" => "required",
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -37,7 +43,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validation);
+
+        $data = $request->all();
+
+        $new_post = new Post();
+        $new_post->title = $data["title"];
+        $new_post->content = $data["content"];
+        if($data["published"] == 'yes')
+            $new_post->published = true;
+        $new_post->slug = Str::of($data["title"])->slug("-");
+        $new_post->save();
+
+        return redirect()->route('admin.posts.index');
+
     }
 
     /**
@@ -46,9 +65,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('admin.posts.show' , compact('post'));
     }
 
     /**
@@ -57,9 +76,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit' , compact('post'));
     }
 
     /**
@@ -69,9 +88,23 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        
+      //  $this->validate["content"] = "required|content,$post->id;
+        $request->validate($this->validation);
+
+        $data = $request->all();
+
+        $new_post = new Post();
+        $new_post->title = $data["title"];
+        $new_post->content = $data["content"];
+        if($data["published"] == 'yes')
+            $new_post->published = true;
+        $new_post->slug = Str::of($data["title"])->slug("-");
+        $new_post->save();
+
+        return redirect()->route('admin.posts.show' , $post->id);
     }
 
     /**
