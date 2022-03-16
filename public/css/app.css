@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);a {
   margin-right: 10px;
+  display: inline-block;
+}
+
+.main-container {
+  background-color: #c3fdff;
 }
 
 .button-choice button {

@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="main-container container">
         @yield('content')
     </div>
 
